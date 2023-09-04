@@ -12,6 +12,14 @@ pipeline {
     }
 
     stages {
+        stage('Clean'){
+            agent any
+            steps {
+                sh "docker stop -f ${NAME}-container"
+                sh "docker rm -f ${NAME}-container"
+            }
+        }
+
         stage('Checkout') {
             agent any
             steps {
