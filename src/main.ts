@@ -23,7 +23,7 @@ async function bootstrap() {
 
   const app = await NestFactory.create(AppModule);
 
-  //app.enableCors({ origin: "*" });
+  app.enableCors();
   
   app.useGlobalPipes(new ValidationPipe({
     disableErrorMessages: false,
@@ -32,13 +32,13 @@ async function bootstrap() {
 
   app.setGlobalPrefix('api/v1');
 
-  app.use(helmet({
+  /*app.use(helmet({
     frameguard: { action: 'deny' }, //establece que si alguien intenta incorporar tu sitio en un marco o iframe, el navegador debe negarlo, lo que ayuda a prevenir ataques de clickjacking.
     hidePoweredBy: true, //Esta configuración elimina o cambia el encabezado X-Powered-By en las respuestas HTTP
     xssFilter: true, //Esta configuración activa el filtro de scripting en sitios cruzados (XSS) proporcionado por los navegadores.
     referrerPolicy: { policy: 'same-origin' }, //Esta configuración controla qué información sobre el origen de la solicitud se incluye en la cabecera Referer de las solicitudes salientes. 
     //strictTransportSecurity: { maxAge: 31536000, includeSubDomains: true } //HSTS es una política de seguridad que obliga a los navegadores a usar siempre HTTPS para comunicarse
-  }))
+  }))*/
 
   const config = new DocumentBuilder()
     .setTitle('API Documentation')
