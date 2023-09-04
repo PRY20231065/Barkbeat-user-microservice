@@ -1,5 +1,6 @@
 pipeline {
     
+    agent any
     environment {
         DYNAMO_ACCESS_KEY = credentials('dynamo-access-key')
         DYNAMO_SECRET_ACCESS_KEY = credentials('dynamo-secret-key')
@@ -12,18 +13,21 @@ pipeline {
 
     stages {
         stage('Checkout') {
+            agent any
             steps {
                 checkout scm
             }
         }
 
         stage('Build') {
+            agent any
             steps {
                 sh "docker build -t ${NAME} ."
             }
         }
 
         stage('Deploy') {
+            agent any
             steps {
                 sh "docker run -d --name ${NAME}-container -p ${PORT}:${PORT} -e DYNAMO_ACCESS_KEY=${DYNAMO_ACCESS_KEY} -e DYNAMO_SECRET_ACCESS_KEY=${DYNAMO_SECRET_ACCESS_KEY} -e DYNAMO_REGION=${DYNAMO_REGION} -e PORT=${PORT} -e PAYLOAD_AGW_KEY=${PAYLOAD_AGW_KEY} -e PAYLOAD_EXP_TIME=${PAYLOAD_EXP_TIME} user-microservice"
             }
