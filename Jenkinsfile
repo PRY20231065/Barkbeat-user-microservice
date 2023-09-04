@@ -15,8 +15,8 @@ pipeline {
         stage('Clean'){
             agent any
             steps {
-                sh "docker stop -f ${NAME}-container"
-                sh "docker rm -f ${NAME}-container"
+                sh "docker stop ${NAME}-container"
+                sh "docker rm ${NAME}-container"
             }
         }
 
@@ -37,7 +37,6 @@ pipeline {
         stage('Deploy') {
             agent any
             steps {
-                /* groovylint-disable-next-line LineLength */
                 sh "docker run -d --name ${NAME}-container -p ${PORT}:${PORT} -e DYNAMO_ACCESS_KEY=${DYNAMO_ACCESS_KEY} -e DYNAMO_SECRET_ACCESS_KEY=${DYNAMO_SECRET_ACCESS_KEY} -e DYNAMO_REGION=${DYNAMO_REGION} -e PORT=${PORT} -e PAYLOAD_AGW_KEY=${PAYLOAD_AGW_KEY} -e PAYLOAD_EXP_TIME=${PAYLOAD_EXP_TIME} user-microservice"
             }
         }
