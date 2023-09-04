@@ -1,28 +1,27 @@
 pipeline {
-    
     agent any
     environment {
         DYNAMO_ACCESS_KEY = credentials('dynamo-access-key')
         DYNAMO_SECRET_ACCESS_KEY = credentials('dynamo-secret-key')
         DYNAMO_REGION = 'us-east-1'
-        NAME = 'user-microservice' 
+        NAME = 'user-microservice'
         PORT = '443'
         PAYLOAD_AGW_KEY = 'key-rs256-2048-pry20231065-dev'
         PAYLOAD_EXP_TIME = '604800'
     }
 
     stages {
-        stage('Clean'){
+        stage('Clean') {
             agent any
             script {
-            def containerExists = sh(script: "docker ps -a --format '{{.Names}}' | grep -q ${NAME}-container && echo 'true' || echo 'false'", returnStatus: true)
-            if (containerExists == 0) {
-                sh "docker stop ${NAME}-container"
-                sh "docker rm ${NAME}-container"
-            } else {
-                echo "El contenedor ${NAME}-container no existe, no es necesario detenerlo ni eliminarlo."
+                    def containerExists = sh(script: "docker ps -a --format '{{.Names}}' | grep -q ${NAME}-container && echo 'true' || echo 'false'", returnStatus: true)
+                    if (containerExists == 0) {
+                    sh "docker stop ${NAME}-container"
+                    sh "docker rm ${NAME}-container"
+                    } else {
+                    echo "El contenedor ${NAME}-container no existe, no es necesario detenerlo ni eliminarlo."
+                    }
             }
-        }
         }
 
         stage('Checkout') {
