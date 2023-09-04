@@ -14,10 +14,15 @@ pipeline {
     stages {
         stage('Clean'){
             agent any
-            steps {
-                sh "docker stop -f ${NAME}-container"
-                sh "docker rm -f ${NAME}-container"
+            script {
+            def containerExists = sh(script: "docker ps -a --format '{{.Names}}' | grep -q ${NAME}-container && echo 'true' || echo 'false'", returnStatus: true)
+            if (containerExists == 0) {
+                sh "docker stop ${NAME}-container"
+                sh "docker rm ${NAME}-container"
+            } else {
+                echo "El contenedor ${NAME}-container no existe, no es necesario detenerlo ni eliminarlo."
             }
+        }
         }
 
         stage('Checkout') {
