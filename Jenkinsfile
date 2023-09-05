@@ -1,18 +1,18 @@
+/* groovylint-disable-next-line CompileStatic */
 pipeline {
-    
     agent any
     environment {
         DYNAMO_ACCESS_KEY = credentials('dynamo-access-key')
         DYNAMO_SECRET_ACCESS_KEY = credentials('dynamo-secret-key')
         DYNAMO_REGION = 'us-east-1'
-        NAME = 'user-microservice' 
+        NAME = 'user-microservice'
         PORT = '443'
         PAYLOAD_AGW_KEY = 'key-rs256-2048-pry20231065-dev'
         PAYLOAD_EXP_TIME = '604800'
     }
 
     stages {
-        stage('Clean'){
+        stage('Clean') {
             agent any
             steps {
                 sh "docker stop ${NAME}-container"

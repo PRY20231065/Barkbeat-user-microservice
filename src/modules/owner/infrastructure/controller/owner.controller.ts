@@ -5,8 +5,8 @@ import { CreateOwnerRequestDTO } from '../../application/dto/create-owner.reques
 import { Owner } from '../../domain/model/owner.model';
 import { OwnerRequestDTO } from '../../application/dto/owner.request.dto';
 
-@ApiTags('owner')
-@Controller('owner')
+@ApiTags('owners')
+@Controller('owners')
 export class OwnerController {
     constructor(private readonly ownerService: OwnerImplService){}
 
