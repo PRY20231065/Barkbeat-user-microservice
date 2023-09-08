@@ -33,7 +33,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('API Documentation')
-    .setDescription('Documentación de API del Proyecto SIAGIE. Gestion de ticket.')
+    .setDescription('Documentación de API del Proyecto User Microservice.')
     .setVersion('1.0')
     .build();
 
