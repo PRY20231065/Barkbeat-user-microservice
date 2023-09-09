@@ -6,7 +6,7 @@ import * as path from 'path';
 import { JwtModule } from '@nestjs/jwt';
 import { VetController } from './infrastructure/controller/vet.controller';
 import { VetImplService } from './application/service/vetImpl.service';
-import { VetImplRepository } from './infrastructure/vetImpl.repository';
+import { VetImplRepository } from './infrastructure/repository/vetImpl.repository';
 
 @Module({
     imports: [

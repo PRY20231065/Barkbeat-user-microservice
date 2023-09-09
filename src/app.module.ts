@@ -3,7 +3,7 @@ import { OwnerModule } from './modules/owner/owner.module';
 import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
 import { ApiTokenCheckMiddleware } from './common/middleware/apitokencheck.middleware';
 import { ConfigModule } from '@nestjs/config';
-import { DatabaseModule } from './database/database.module';
+import { DatabaseModule } from './common/database/database.module';
 import { AuthenticateModule } from './modules/auth/authenticate.module';
 
 @Module({

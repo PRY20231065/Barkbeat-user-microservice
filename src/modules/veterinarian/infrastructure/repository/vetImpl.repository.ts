@@ -1,9 +1,9 @@
 
 import { Injectable } from '@nestjs/common';
 import * as uuid from 'uuid';
-import { VetRepository } from '../domain/interface/vet.repository';
+import { VetRepository } from '../../domain/interface/vet.repository';
 import { InjectModel, Model } from 'nestjs-dynamoose';
-import { Vet, VetKey } from '../domain/model/vet.model';
+import { Vet, VetKey } from '../../domain/model/vet.model';
 
 @Injectable()
 export class VetImplRepository implements VetRepository {

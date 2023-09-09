@@ -1,6 +1,6 @@
 import { HttpStatus, Injectable } from "@nestjs/common";
 import { VetService } from "../../domain/interface/vet.service";
-import { VetImplRepository } from "../../infrastructure/vetImpl.repository";
+import { VetImplRepository } from "../../infrastructure/repository/vetImpl.repository";
 import { JwtService } from "@nestjs/jwt";
 import { CredentialsRequestDTO } from "src/modules/auth/dto/credentials.request.dto";
 import { CredentialsResponseDTO } from "src/modules/auth/dto/credentials.response.dto";
