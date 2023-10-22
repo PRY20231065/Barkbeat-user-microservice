@@ -99,8 +99,8 @@ export class VetImplService implements VetService {
             }
           
             const vetModel =  mapper.map(vet, VetRequestDTO, Vet);
-            vetModel.email = vetModel.email;
-            vetModel.password = vetModel.password;
+            vetModel.email = findVet.email;
+            vetModel.password = findVet.password;
             //Al actualizar no debe ir Id (primary key) en la entidadDto
             const ownerModelUpdated = await this.vetRepository.update({id:key},vetModel);
             const mapVet =  mapper.map(ownerModelUpdated, Vet, VetResponseDTO);
